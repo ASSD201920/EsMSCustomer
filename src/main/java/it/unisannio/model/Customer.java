@@ -1,15 +1,19 @@
 package it.unisannio.model;
 
-import javax.persistence.*;
 import java.io.Serializable;
+import java.lang.String;
+
+import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  * Entity implementation class for Entity: User
  *
  */
 @Entity
+@XmlRootElement
 public class Customer implements Serializable {
- 
+
 	@Id
 	private String CF;
 	private String firstName;
@@ -18,7 +22,7 @@ public class Customer implements Serializable {
 
 	public Customer() {
 		super();
-	}   
+	}
 	public Customer(String cf, String fn, String ln) {
 		lastName = ln;
 		firstName = fn;
@@ -30,14 +34,14 @@ public class Customer implements Serializable {
 
 	public void setCF(String CF) {
 		this.CF = CF;
-	}   
+	}
 	public String getFirstName() {
 		return this.firstName;
 	}
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
-	}   
+	}
 	public String getLastName() {
 		return this.lastName;
 	}

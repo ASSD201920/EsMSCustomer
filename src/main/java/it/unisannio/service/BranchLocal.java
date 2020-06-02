@@ -3,7 +3,6 @@ package it.unisannio.service;
 import it.unisannio.model.Customer;
 
 import javax.ejb.Local;
-import java.util.List;
 
 @Local
 public interface BranchLocal {
