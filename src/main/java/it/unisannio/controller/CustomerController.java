@@ -29,7 +29,6 @@ public class CustomerController {
 	@Path("/")
 	@Consumes("application/json")
 	public Response createCustomer(Customer c) {
-		System.out.println(c);
 		try {
 			branch.createCustomer(c.getCF(), c.getFirstName(), c.getLastName());
 			return Response.created(new URI("/customers/"+c.getCF())).build();
@@ -39,12 +38,14 @@ public class CustomerController {
 	}
 
 	@GET
-	public Response test() {
-		System.out.println("test");
+	@Path("/{custCF}")
+	public Response getCustomer(@PathParam("custCF") String cf) {
 		try {
-			branch.getCustomer("");
-			return Response.ok().build();
-		} catch (Exception e) {return Response.status(500).build();}
-
+			Customer c = branch.getCustomer(cf);
+			if (c == null) Response.status(404).build();
+			return Response.ok(c).build();
+		} catch (Exception e) {
+			return Response.status(500).build();
+		}
 	}
 }
